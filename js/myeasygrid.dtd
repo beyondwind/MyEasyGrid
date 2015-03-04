@@ -1,0 +1,7 @@
+<!ELEMENT page (pageNo,pageSize,totalPages,records,result)>
+<!ELEMENT pageNo (#PCDATA)>
+<!ELEMENT pageSize (#PCDATA)>
+<!ELEMENT totalPages (#PCDATA)>
+<!ELEMENT records (#PCDATA)>
+<!ELEMENT result (#PCDATA|row)*>
+<!ELEMENT row ANY>

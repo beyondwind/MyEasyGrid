@@ -1,0 +1,7 @@
+var demodata_xml='<page><pageNo>1</pageNo><pageSize>5</pageSize><totalPages>7</totalPages><records>33</records>'
+	+ '<result> <row><name>Michael</name><age>23</age><height>171cm</height></row>'
+	+ '<row><name>Jhon</name><age>22</age><height>178cm</height></row>'
+	+ '<row><name>Marry</name><age>21</age><height>161cm</height></row>'
+	+ '<row><name>Rugal</name><age>23</age><height>181cm</height></row>'
+	+ '<row><name>White</name><age>24</age><height>158cm</height></row>'
+	+ '</result></page>'

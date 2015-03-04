@@ -1,0 +1,218 @@
+﻿<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>MyEasyGrid</title>
+	<link href="./css/easygrid.css" rel="stylesheet">
+	<link href="./css/bootstrap.css" rel="stylesheet">
+	<link href="./css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="./css/docs.css" rel="stylesheet">
+	<style>
+	.com { color: #93a1a1; }
+	.lit { color: #195f91; }
+	.pun, .opn, .clo { color: #93a1a1; }
+	.fun { color: #dc322f; }
+	.str, .atv { color: #D14; }
+	.kwd, .prettyprint .tag { color: #1e34ab; }
+	.typ, .atn, .dec, .var { color: teal; }
+	.pln { color: #48484c; }
+
+	.prettyprint {
+		padding: 8px;
+		background-color: #f7f7f9;
+		border: 1px solid #e1e1e8;
+	}
+	.prettyprint.linenums {
+		-moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+		box-shadow: inset 47px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+	}
+
+	/* Specify class=linenums on a pre to get line numbering */
+	ol.linenums,ul.linenums {
+		margin: 0 0 0 33px; /* IE indents via margin-left */
+	}
+	ol.linenums li,ul.linenums li {
+		padding-left: 12px;
+		color: #8e8e95;
+		line-height: 20px;
+		text-shadow: 0 1px 0 #fff;
+	}
+	</style>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<h3 class="text-center">
+				MyEasyGrid
+			</h3>
+		</div>
+	</div>
+	
+	<div class="row-fluid">
+		<div class="span8 offset2">
+			<div class="bs-docs-example">
+				<form class="form-search text-right">
+					<div class="input-append">
+						<input type="text" class="span6 search-query" id="search-text" name="username"/>
+						<input type="submit" class="btn" id="search-btn" />
+					</div>
+					<p />
+					<p><button class="btn" id="get-ckeckbox">获取复选框值</button ></p>
+				</form>
+				<div id="myeasygrid"></div>
+				<div id="display"></div>
+			</div>
+			<pre class="prettyprint text-left">
+<h4 class="text-center">html代码</h4><ol class="linenums">
+
+<li><span class="tag">&lt;div <span><span class="atn">id</span><span class="pun">=</span><span class="atv">"myeasygrid"</span><span class="tag">&gt;&lt;/div&gt;</span></li></ol>
+<hr/><h4 class="text-center">js代码</h4><ol class="linenums"><li><span class="pln">$(</span><span class="atv">function()</span> <span class="pln">{</span></li><li>	<span class="pln">$(</span><span class="tag">'#myeasygrid'</span><span class="pln">).myeasygrid({</span></li><li>		<span class="pln">url : </span><span class="tag">''</span><span class="pln">,</span><span class="atn">  //请求数据的url路径</span></li><li>		<span class="pln">method : </span><span class="tag">'get'</span><span class="pln">,<span class="atn">  //请求方式，为"get"和"post"两种</span></span></li><li>		<span class="pln">dataType : </span><span class="tag">'json'</span><span class="pln">,</span><span class="atn">  //请求返回的数据，为"json"和"xml"两种，xml暂时未开通</span></li><li>		<span class="pln">pageNumber : 1,</span><span class="atn">  //默认显示页面，1即显示第一页</span></li><li>		<span class="pln">pageSize : 5,</span><span class="atn">  //页面大小，即每页显示记录数量</span></li><li>		<span class="pln">rowid : 'name',</span><span class="atn">  //行隐藏值，默认取"id"中的值，行双击回调函数将取出对应行所隐藏的值</span></li><li>		<span class="pln">rowidType : 'checkbox',</span><span class="atn">  //默认为checkbox，或者可以填写hidden，则复选框隐藏</span></li><li>		<span class="pln">number :true,</span><span class="atn">  //默认为false，是否显示编号，true/false，若显示，将占据4%列宽</span></li><li>		<span class="pln">onPageChange : pageChangeDisplay,</span><span class="atn">  //翻页回调函数，参数:前页码e.pageNo,请求页码e.clickPageNo</span></li><li>		<span class="pln">onRowDbclick : dbClick,</span><span class="atn">  //行双击回调函数，参数rowid中的值</span></li><li>		<span class="pln">onFinish : pageLoaded,</span><span class="atn">  //表单数据加载完成回调</span></li><li>		<span class="pln">conditions : [ {</span><span class="atn">  //查询条件，可指定input、select、textarea,checkbox</span></li><li>			<span class="pln">inputId : </span><span class="tag">'search-text'</span><span class="pln">,</span><span class="atn">  //控件的id,若为checkbox,inputId填写name</span></li><li>			<span class="pln">postName : </span><span class="tag">'username'</span><span class="atn">  //提交时的变量名称</span></li><li>		<span class="pln">} ],</span></li><li>		<span class="pln">buttons : [ {</span><span class="atn">  //按钮配置</span></li><li>			<span class="pln">id : </span><span class="tag">'search-btn',</span><span class="atn">  //按钮id</span></li><li>			<span class="pln">action : </span><span class="tag">''</span><span class="atn">  //按钮触发事件，如果为空则默认为url中的路径</span></li><li>		<span class="pln">} ],</span></li><li>		<span class="pln">batchButton : [ {</span><span class="atn">  //按钮配置</span></li><li>			<span class="pln">tag : </span><span class="tag">'&lt;a href="#" class="btn">批量删除&lt;/a>',</span><span class="atn">  //批量操作按钮html代码</span></li><li>			<span class="pln">tagClick : </span><span class="tag">batchDelete</span><span class="atn">  //按钮触发回调</span></li><li>		<span class="pln">}, {</span></li><li>			<span class="pln">tag : </span><span class="tag">'&lt;a href="#">批量设置&lt;/a>',</span></li><li>			<span class="pln">tagClick : </span><span class="tag">batchSet</span></li><li>		<span class="pln">} ],</span></li><li>		<span class="pln">result : [ {</span><span class="atn">  //返回数据结果集</span></li><li>			<span class="pln">title : </span><span class="tag">'姓名'</span><span class="pln">,</span><span class="atn">  //列标题</span></li><li>			<span class="pln">weight : </span><span class="tag">'20%'</span><span class="pln">,</span><span class="atn">  //列所占的比重</span></li><li>			<span class="pln">valueName : </span><span class="tag">'name'</span><span class="pln">,</span><span class="atn">  //返回记录的key值</span></li><li>			<span class="pln">align : </span><span class="tag">'left'</span><span class="atn">  //列标题的对齐方式</span></li><li>		<span class="pln">}, {</span></li><li>			<span class="pln">title : </span><span class="tag">'年龄'</span><span class="pln">,</span></li><li>			<span class="pln">weight : </span><span class="tag">'18%'</span><span class="pln">,</span></li><li>			<span class="pln">valueName : </span><span class="tag">'age'</span><span class="pln">,</span></li><li>			<span class="pln">align : </span><span class="tag">'left'</span></li><li>		<span class="pln">}, {</span></li><li>			<span class="pln">title : </span><span class="tag">'身高'</span><span class="pln">,</span></li><li>			<span class="pln">weight : </span><span class="tag">'20%'</span><span class="pln">,</span></li><li>			<span class="pln">valueName : </span><span class="tag">'height.m'</span><span class="pln">,</span><span class="atn">  //支持对json对象的层层解析</span></li><li>			<span class="pln">align : </span><span class="tag">'left'</span></li><li>		<span class="pln">}, {</span></li><li>			<span class="pln">title : </span><span class="tag">'生日'</span><span class="pln">,</span></li><li>			<span class="pln">weight : </span><span class="tag">'20%'</span><span class="pln">,</span></li><li>			<span class="pln">valueName : </span><span class="tag">'birth'</span><span class="pln">,</span></li><li>			<span class="pln">format : </span><span class="tag">'yyyy-MM-dd'</span><span class="pln">,</span><span class="atn">  //日期显示格式</span></li><li>			<span class="pln">align : </span><span class="tag">'left'</span></li><li>		<span class="pln">}, {</span></li><li>			<span class="pln">title : </span><span class="tag">'操作'</span><span class="pln">,</span></li><li>			<span class="pln">weight : </span><span class="tag">'20%'</span><span class="pln">,</span></li><li>			<span class="pln">valueName : </span><span class="tag">''</span><span class="pln">,</span></li><li>			<span class="pln">operation : [{</span></li><li>				<span class="pln">tag : </span><span class="tag">'&lt;a href="javascript:void(0);">添加&lt;/a>'</span><span class="pln">,</span><span class="atn">  //自定义显示内容</span></li><li>				<span class="pln">parameters : </span><span class="tag">['name','birth']</span><span class="pln">,</span><span class="atn">  //参数，不支持json对象层层解析</span></li><li>				<span class="pln">tagClick : </span><span class="tag">aClick</span><span class="atn">  //单击回调函数，参数event，event.data中包含parameters</span></li><li>			<span class="pln">},{</span></li><li>				<span class="pln">tag : </span><span class="tag">'&lt;a href="add?name={0}&birth={1}">删除&lt;/a>'</span><span class="pln">,</span><span class="atn">  //parameters按顺序替换自定标签</span></span></li><li>				<span class="pln">parameters : </span><span class="tag">['name','birth']</span><span class="pln">,<span class="atn">  //按顺序替换tag中的{0},{1}</span></span></li><li>				<span class="pln">tagClick : </span><span class="tag">null</span></li><li>				<span class="pln">condition : {need:</span><span class="tag">'23'</span><span class="pln">,valueName:</span><span class="tag">'age'</span><span class="pln">}</span><span class="atn">  //取json数据中key为valueName的值，如果和need中所填一致，则显示该操作</span></li><li>			<span class="pln">}],</span><li>			<span class="pln">align : </span><span class="tag">'left'</span></li><li>		<span class="pln">} ]</span></li><li>	<span class="pln">}).myeasyAddData(</span><span class="tag">demodata</span><span class="pln">);</span></li><li><span class="pln">});</span></li></ol>
+<hr/><h4 class="text-center">演示添加的json数据</h4><ol class="linenums"><li><span class="tag">var</span> <span class="pln">demodata={</span>"pageNo"<span class="pln">:</span>1<span class="pln">,</span>"pageSize"<span class="pln">:</span>5<span class="pln">,</span>"totalPages"<span class="pln">:</span>7<span class="pln">,</span>"records"<span class="pln">:</span>33<span class="pln">,</span>"result"<span class="pln">:</span><span class="pln">[</span></li><li>	<span class="pln">{</span>"name"<span class="pln">:</span>"Michael"<span class="pln">,</span>"age"<span class="pln">:</span>23<span class="pln">,</span>"height"<span class="pln">:{</span>"cm"<span class="pln">:</span>"171cm"<span class="pln">,</span>"m"<span class="pln">:</span>"1.71m"<span class="pln">},</span>"birth"<span class="pln">:</span>"1990/11/16"<span class="pln">},</span></li><li>	<span class="pln">{</span>"name"<span class="pln">:</span>"Jhon"<span class="pln">,</span>"age"<span class="pln">:</span>22<span class="pln">,</span>"height"<span class="pln">:{</span>"cm"<span class="pln">:</span>"178cm"<span class="pln">,</span>"m"<span class="pln">:</span>"1.78m"<span class="pln">},</span>"birth"<span class="pln">:</span>"1989/01/06"<span class="pln">},</span></li><li>	<span class="pln">{</span>"name"<span class="pln">:</span>"Marry"<span class="pln">,</span>"age"<span class="pln">:</span>21<span class="pln">,</span>"height"<span class="pln">:{</span>"cm"<span class="pln">:</span>"161cm"<span class="pln">,</span>"m"<span class="pln">:</span>"1.61m"<span class="pln">},</span>"birth"<span class="pln">:</span>"1993/02/17"<span class="pln">},</span></li><li>	<span class="pln">{</span>"name"<span class="pln">:</span>"Rugal"<span class="pln">,</span>"age"<span class="pln">:</span>23<span class="pln">,</span>"height"<span class="pln">:{</span>"cm"<span class="pln">:</span>"181cm"<span class="pln">,</span>"m"<span class="pln">:</span>"1.81m"<span class="pln">},</span>"birth"<span class="pln">:</span>"1991/3/22"<span class="pln">},</span></li><li>	<span class="pln">{</span>"name"<span class="pln">:</span>"White"<span class="pln">,</span>"age"<span class="pln">:</span>24<span class="pln">,</span>"height"<span class="pln">:{</span>"cm"<span class="pln">:</span>"158cm"<span class="pln">,</span>"m"<span class="pln">:</span>"1.58m"<span class="pln">},</span>"birth"<span class="pln">:</span>"1992/12/27"<span class="pln">}</span></li><li><span class="pln">]}</span></li></ol>
+	<span class="atv">注！</span><span class="pln"> 'pageNo' 'pageSize' 'totalPages' 'records' 'result'
+	为固定参数，名字不能变更</span>
+<hr/><h4 class="text-center">其它方法</h4>
+<ul class="linenums">
+<li><span class="pln">myeasyAddData(data)</span> <span class="tag">data</span>:<span class="atn">列表显示的数据，根据配置中的"dataType"来解析数据</span></li>
+<li><span class="pln">myeasyOptions(settings)</span> <span class="tag">settings</span>:<span class="atn">配置信息，该方法可以修改初始的配置</span></li>
+<li><span class="pln">myeasyPageChange(page)</span> <span class="tag">page</span>:<span class="atn">请求翻页的页码</span></li>
+<li><span class="pln">myeasyGetCondition()</span> <span class="atn">获取用户最近搜索的条件</span></li>
+<li><span class="pln">myeasyGetCheckValue()</span> <span class="atn">获取当前分页列表当页的选中的checkbox的value，以数组方式返回</span></li>
+</ul>
+</pre>
+		</div>
+	</div>
+	
+</div>
+<footer>
+	<p class="text-center">
+		浙江工业大学-<a href="http://www.zjut.com/" title="精弘">精弘网络</a>-随风而已 版权所有 
+	</p>
+	<p class="text-center">
+		© 2013 <a href="#" title="我的浙江工业大学">MYZJUT</a>
+	</p>
+</footer>
+	<script src="./js/jquery.js"></script>
+	<script src="./js/myeasygrid.js"></script>
+	<script src="./js/demodata_json.js"></script>
+	<script src="./js/demodata_xml.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var first=true;
+			function pageChangeDisplay(e){
+				if(!first){
+					$('#display').append('now is <a href="#">' + e.pageNo + '<a/>,you click <a href="#">' + e.clickPageNo + '<a/><br/>');
+				}
+				first=false;
+			}
+			
+			function aClick(event){
+				$('#display').append('you click: <a href="#">' + event.data.name + '<a/><br/>');
+			}
+			
+			function dbClick(rowid){
+				$('#display').append('you double click: <a href="#">' + rowid + '<a/><br/>');
+			}
+			
+			function batchDelete(event){
+				var arr = $('#myeasygrid').myeasyGetCheckValue();
+				for(var i=0; i<arr.length; i++)
+					$('#display').append('you delete-' + i + ': <a href="#">' + arr[i] + '</a>&nbsp;&nbsp;');
+				$('#display').append('<br/>');
+				return false;
+			}
+			
+			function batchSet(event){
+				var arr = $('#myeasygrid').myeasyGetCheckValue();
+				for(var i=0; i<arr.length; i++)
+					$('#display').append('you set-' + i + ': <a href="#">' + arr[i] + '</a>&nbsp;&nbsp;');
+				$('#display').append('<br/>');
+				return false;
+			}
+			
+			function pageLoaded(data){
+				$('#display').append('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;载入完成<br/>');
+			}
+			
+			//json
+			$('#myeasygrid').myeasygrid({
+				url : '',
+				method : 'get',
+				dataType : 'json',
+				pageNumber : 1,
+				pageSize : 5,
+				rowid : 'name',
+				rowidType : 'checkbox',//hidden
+				number :true,// true/false default:false
+				onPageChange : pageChangeDisplay,
+				onRowDbclick : dbClick,
+				onFinish : pageLoaded,
+				conditions : [ {
+					inputId:'search-text',postName:'username'
+				} ],
+				buttons : [ {
+					id:'search-btn',action:''
+				} ],
+				batchButton : [{
+						tag : '<a href="javascript:void(0);" class="btn">批量删除</a>',
+						tagClick : batchDelete
+					},{
+						tag : '<a href="javascript:void(0);">批量设置</a>',
+						tagClick : batchSet
+					}
+				],
+				result : [ {
+					title : '姓名',
+					weight : '20%',
+					valueName : 'name',
+					align : 'left'
+				}, {
+					title : '年龄',
+					weight : '18%',
+					valueName : 'age',
+					align : 'left'
+				}, {
+					title : '身高',
+					weight : '20%',
+					valueName : 'height.m',
+					align : 'left'
+				}, {
+					title : '生日',
+					weight : '20%',
+					valueName : 'birth',
+					format : 'yyyy-MM-dd',
+					align : 'left'
+				}, {
+					title : '操作',
+					weight : '20%',
+					valueName : '',
+					operation : [{
+						tag : '<a href="javascript:void(0);">添加</a>',
+						parameters : ['name','birth'],
+						tagClick : aClick
+					},{
+						tag : '<a href="add?name={0}&birth={1}">删除</a>',
+						parameters : ['name','birth'],
+						tagClick :null,
+						condition : {need:'23',valueName:'age'}
+					}],
+					align : 'left'
+				} ]
+			}).myeasyAddData(demodata);
+			
+			$('#search-btn').click(function() {
+				var c = $('#myeasygrid').myeasyGetCondition();
+				$('#display').append('condition: <a href="#">' + c + '</a><br/>');
+			});
+			
+			$('#get-ckeckbox').click(function(){
+				var arr = $('#myeasygrid').myeasyGetCheckValue();
+				for(var i=0; i<arr.length; i++)
+					$('#display').append('you select-' + i + ': <a href="#">' + arr[i] + '</a>&nbsp;&nbsp;');
+				$('#display').append('<br/>');
+				return false;
+			});
+		});
+	</script>
+</body>
+</html>
